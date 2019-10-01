@@ -43,13 +43,20 @@ trait EntityOverlayFormatterBase {
    *   Entity to display on the overlay.
    * @param string $view_mode
    *   View mode for the overlay.
+   * @param string $dialog_type
+   *   Dialog type.
    * @param string $title
    *   Optional link title override.
    *
    * @return array
    *   Link render array.
    */
-  public function getOverlayLink(EntityInterface $entity, $view_mode, $title = '') {
+  public function getOverlayLink(
+    EntityInterface $entity,
+    $view_mode,
+    $dialog_type,
+    $title = ''
+  ) {
     $url = $this->getOverlayUrl($entity, $view_mode);
     return [
       '#type' => 'link',
@@ -58,11 +65,13 @@ trait EntityOverlayFormatterBase {
       '#options' => $url->getOptions() + [
         'attributes' => [
           'class' => [
-            // Tell Drupal core to treat it as ajax.
+              // Tell Drupal core to treat it as ajax.
             'use-ajax',
             'entity-overlay-link',
             'entity-overlay__' . $entity->getEntityTypeId() . '-' . $entity->id(),
           ],
+          'data-dialog-type' => 'entity_overlay',
+          'data-dialog-options' => '{"dialogType":"' . $dialog_type . '"}',
         ],
       ],
     ];

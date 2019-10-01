@@ -17,8 +17,9 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  * @FieldFormatter(
  *   id = "entity_reference_entity_overlay_formatter",
  *   label = @Translation("Rendered entity overlay"),
- *   description = @Translation("Display a view mode of the referenced entities and display another view mode of the rendered entity on click as an overlay."),
- *   field_types = {
+ *   description = @Translation("Display a view mode of the referenced entities
+ *   and display another view mode of the rendered entity on click as an
+ *   overlay."), field_types = {
  *     "entity_reference"
  *   }
  * )
@@ -65,8 +66,19 @@ class EntityReferenceOverlayFormatter extends EntityReferenceFormatterBase imple
    * @param \Drupal\Core\Entity\EntityDisplayRepositoryInterface $entity_display_repository
    *   The entity display repository.
    */
-  public function __construct($plugin_id, $plugin_definition, FieldDefinitionInterface $field_definition, array $settings, $label, $view_mode, array $third_party_settings, EntityTypeManagerInterface $entity_type_manager, EntityDisplayRepositoryInterface $entity_display_repository) {
-    parent::__construct($plugin_id, $plugin_definition, $field_definition, $settings, $label, $view_mode, $third_party_settings);
+  public function __construct(
+    $plugin_id,
+    $plugin_definition,
+    FieldDefinitionInterface $field_definition,
+    array $settings,
+    $label,
+    $view_mode,
+    array $third_party_settings,
+    EntityTypeManagerInterface $entity_type_manager,
+    EntityDisplayRepositoryInterface $entity_display_repository
+  ) {
+    parent::__construct($plugin_id, $plugin_definition, $field_definition,
+      $settings, $label, $view_mode, $third_party_settings);
     $this->entityTypeManager = $entity_type_manager;
     $this->entityDisplayRepository = $entity_display_repository;
   }
@@ -74,7 +86,12 @@ class EntityReferenceOverlayFormatter extends EntityReferenceFormatterBase imple
   /**
    * {@inheritdoc}
    */
-  public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
+  public static function create(
+    ContainerInterface $container,
+    array $configuration,
+    $plugin_id,
+    $plugin_definition
+  ) {
     return new static(
       $plugin_id,
       $plugin_definition,
@@ -93,9 +110,10 @@ class EntityReferenceOverlayFormatter extends EntityReferenceFormatterBase imple
    */
   public static function defaultSettings() {
     return [
+      'dialog_type' => 'core_dialog',
       'list_view_mode' => 'teaser',
       'overlay_view_mode' => 'default',
-      // 'width' => 500,.
+        // 'width' => 500,.
       'display_link' => FALSE,
       'link_title' => t('Read more'),
     ] + parent::defaultSettings();
@@ -104,8 +122,37 @@ class EntityReferenceOverlayFormatter extends EntityReferenceFormatterBase imple
   /**
    * {@inheritdoc}
    */
+  public static function isApplicable(FieldDefinitionInterface $field_definition
+  ) {
+    // This formatter is only available for entity types that have a view
+    // builder.
+    $target_type = $field_definition->getFieldStorageDefinition()
+      ->getSetting('target_type');
+    return \Drupal::entityManager()
+      ->getDefinition($target_type)
+      ->hasViewBuilderClass();
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function settingsForm(array $form, FormStateInterface $form_state) {
     // @todo add settings: width, height, show 'open' link, library
+    $manager = \Drupal::service('plugin.manager.entity_overlay');
+    $plugin_definitions = $manager->getDefinitions();
+    $plugin_options = [];
+    foreach ($plugin_definitions as $plugin_definition) {
+      $plugin_options[$plugin_definition['id']] = $plugin_definition['label'];
+    }
+    if (!empty($plugin_definitions)) {
+      $elements['dialog_type'] = [
+        '#type' => 'select',
+        '#title' => t('Dialog'),
+        '#default_value' => $this->getSetting('dialog_type'),
+        '#options' => $plugin_options,
+        '#description' => t('Select which dialog type you would like.'),
+      ];
+    }
     $elements['list_view_mode'] = [
       '#type' => 'select',
       '#options' => $this->entityDisplayRepository->getViewModeOptions($this->getFieldSetting('target_type')),
@@ -135,7 +182,7 @@ class EntityReferenceOverlayFormatter extends EntityReferenceFormatterBase imple
     $elements['link_title'] = [
       '#type' => 'textfield',
       '#title' => t('Link title'),
-    // @todo translate
+      // @todo translate
       '#default_value' => $this->getSetting('link_title'),
     ];
 
@@ -147,12 +194,21 @@ class EntityReferenceOverlayFormatter extends EntityReferenceFormatterBase imple
    */
   public function settingsSummary() {
     $summary = [];
-
+    $manager = \Drupal::service('plugin.manager.entity_overlay');
+    $plugin_definitions = $manager->getDefinitions();
+    $plugin_options = [];
+    foreach ($plugin_definitions as $plugin_definition) {
+      $plugin_options[$plugin_definition['id']] = $plugin_definition['label'];
+    }
     $view_modes = $this->entityDisplayRepository->getViewModeOptions($this->getFieldSetting('target_type'));
     $list_view_mode = $this->getSetting('list_view_mode');
     $overlay_view_mode = $this->getSetting('overlay_view_mode');
-    $summary[] = t('List rendered as @mode', ['@mode' => isset($view_modes[$list_view_mode]) ? $view_modes[$list_view_mode] : $list_view_mode]);
-    $summary[] = t('Overlay rendered as @mode', ['@mode' => isset($view_modes[$overlay_view_mode]) ? $view_modes[$overlay_view_mode] : $overlay_view_mode]);
+    $summary[] = t('List rendered as @mode',
+      ['@mode' => isset($view_modes[$list_view_mode]) ? $view_modes[$list_view_mode] : $list_view_mode]);
+    $summary[] = t('Overlay rendered as @mode',
+      ['@mode' => isset($view_modes[$overlay_view_mode]) ? $view_modes[$overlay_view_mode] : $overlay_view_mode]);
+    $summary[] = t('Dialog opened as @dialog_type',
+      ['@dialog_type' => $plugin_options[$this->getSetting('dialog_type')]]);
     // @todo add new settings to summary
     return $summary;
   }
@@ -166,6 +222,7 @@ class EntityReferenceOverlayFormatter extends EntityReferenceFormatterBase imple
     $overlay_view_mode = $this->getSetting('overlay_view_mode');
     $display_link = $this->getSetting('display_link');
     $link_title = $this->getSetting('link_title');
+    $dialog_type = $this->getSetting('dialog_type');
 
     // @todo dependency injection
     $pathAliasManager = \Drupal::service('path.alias_manager');
@@ -177,10 +234,12 @@ class EntityReferenceOverlayFormatter extends EntityReferenceFormatterBase imple
         $view_builder = $this->entityTypeManager->getViewBuilder($entity->getEntityTypeId());
         $elements[$delta] = [
           '#theme' => 'entity_overlay_list_item',
-          '#entity_view' => $view_builder->view($entity, $list_view_mode, $entity->language()->getId()),
+          '#entity_view' => $view_builder->view($entity, $list_view_mode,
+            $entity->language()->getId()),
           '#entity_id' => $entity->id(),
           '#entity_type_id' => $entity->getEntityTypeId(),
-          '#entity_overlay_link' => $this->getOverlayLink($entity, $overlay_view_mode, $link_title),
+          '#entity_overlay_link' => $this->getOverlayLink($entity,
+            $overlay_view_mode, $dialog_type, $link_title),
           '#display_link' => $display_link,
         ];
 
@@ -190,8 +249,10 @@ class EntityReferenceOverlayFormatter extends EntityReferenceFormatterBase imple
           $pathAliasManager->getAliasByPath('/' . $entity->getEntityTypeId() . '/' . $entity->id()),
         ];
         $entitySettings[$entity->getEntityTypeId() . '_' . $entity->id()] = [
-          'overlay_url' => $this->getOverlayUrl($entity, $overlay_view_mode)->toString(),
+          'overlay_url' => $this->getOverlayUrl($entity, $overlay_view_mode)
+            ->toString(),
           'path_match' => $pathMatch,
+          'dialog_type' => $dialog_type,
         ];
 
         if (!empty($items[$delta]->_attributes)) {
@@ -216,14 +277,6 @@ class EntityReferenceOverlayFormatter extends EntityReferenceFormatterBase imple
       ],
     ];
 
-    // Attaching here instead of entity_overlay.libraries.yml.
-    // @todo review { weight: n } in .libraries.yml for depedencies
-    // https://www.drupal.org/project/drupal/issues/1945262
-    // These dependencies are needed for behaviors.
-    $elements['#attached']['library'][] = 'core/drupalSettings';
-    $elements['#attached']['library'][] = 'core/drupal';
-    $elements['#attached']['library'][] = 'core/jquery';
-    $elements['#attached']['library'][] = 'core/jquery.once';
     $elements['#attached']['library'][] = 'entity_overlay/entity_overlay.behaviors';
     $elements['#attached']['drupalSettings'] = [
       'entity_overlay' => $entitySettings,
@@ -232,16 +285,6 @@ class EntityReferenceOverlayFormatter extends EntityReferenceFormatterBase imple
     $elements['#attached']['library'][] = 'core/drupal.ajax';
 
     return $elements;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public static function isApplicable(FieldDefinitionInterface $field_definition) {
-    // This formatter is only available for entity types that have a view
-    // builder.
-    $target_type = $field_definition->getFieldStorageDefinition()->getSetting('target_type');
-    return \Drupal::entityManager()->getDefinition($target_type)->hasViewBuilderClass();
   }
 
 }

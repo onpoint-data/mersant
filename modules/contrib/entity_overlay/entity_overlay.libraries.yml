@@ -2,3 +2,8 @@ entity_overlay.behaviors:
   version: VERSION
   js:
     js/behaviors.js:
+  dependencies:
+    - core/jquery
+    - core/jquery.once
+    - core/drupal
+    - core/drupalSettings
