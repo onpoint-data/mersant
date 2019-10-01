@@ -1,0 +1,10 @@
+name: Empty Fields
+description: Provides options for displaying empty fields.
+type: module
+# core: 8.x
+
+# Information added by Drupal.org packaging script on 2017-12-09
+version: '8.x-1.0-alpha1+2-dev'
+core: '8.x'
+project: 'empty_fields'
+datestamp: 1512852188

@@ -1,0 +1,21 @@
+/**
+ * If using a CSS pre-processor, tell it to overwrite this file. If not, place
+ * your custom CSS modifications here.
+ */
+
+.export .panel-heading, .flight-master-export .panel-heading  {
+   background-color: #fff29c;
+}
+
+.import .panel-heading, .flight-master-import .panel-heading  {
+   background-color: #fb9999; 
+}
+
+.flight-master-special .panel-heading {
+   background-color: #afd2ff;
+}
+
+.form-item-field-van-routes-0-caption {
+   display: none;
+}
+

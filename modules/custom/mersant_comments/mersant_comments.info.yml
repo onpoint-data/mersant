@@ -1,0 +1,9 @@
+name: Mersant Comments Module
+description: Adjustments to comments created by OnPoint.
+package: Custom
+
+type: module
+core: 8.x
+
+dependencies:
+  - comment

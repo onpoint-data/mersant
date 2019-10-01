@@ -1,0 +1,11 @@
+name: Entity Overlay
+type: module
+description: Display a content entity as an overlay.
+# core: 8.x
+package: Other
+
+# Information added by Drupal.org packaging script on 2018-05-09
+version: '8.x-1.0-alpha1'
+core: '8.x'
+project: 'entity_overlay'
+datestamp: 1525871287

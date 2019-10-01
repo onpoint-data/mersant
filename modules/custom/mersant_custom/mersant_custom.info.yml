@@ -1,0 +1,9 @@
+name: Mersant Custom Module
+description: Adjustments to forms etc created by OnPoint.
+package: Custom
+
+type: module
+core: 8.x
+
+dependencies:
+
