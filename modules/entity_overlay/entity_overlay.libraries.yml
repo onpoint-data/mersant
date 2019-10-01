@@ -1,4 +1,0 @@
-entity_overlay.behaviors:
-  version: VERSION
-  js:
-    js/behaviors.js:

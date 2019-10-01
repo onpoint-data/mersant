@@ -1,4 +1,0 @@
-services:
-  plugin.manager.empty_fields:
-    class: Drupal\empty_fields\EmptyFieldsPluginManager
-    parent: default_plugin_manager
