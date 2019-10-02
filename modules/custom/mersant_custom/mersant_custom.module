@@ -1,3 +1,8 @@
 <?php
 
+#function mersant_custom_field_widget_time_range_form_alter(&$element, FormStateInterface $form_state, $context) {
+#  $element['value']['#attributes']['step'] = 60;
+#  $element['end_value']['#attributes']['step'] = 60;
+#}
+
 

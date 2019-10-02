@@ -31,7 +31,7 @@ sites/simpletest
 
 
 #other files
-php_errorlog
+/php_errorlog
 
 
 # If you prefer to store your .gitignore file in the sites/ folder, comment

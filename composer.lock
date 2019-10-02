@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "344b6d6c5ceb12641c1c868029c15ae6",
+    "content-hash": "1a5bf47a56660f04c7de4b798868b93b",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1516,6 +1516,48 @@
             ],
             "description": "Drupal is an open source content management platform powering millions of websites and applications.",
             "time": "2019-09-04T10:26:35+00:00"
+        },
+        {
+            "name": "drupal/datetimehideseconds",
+            "version": "dev-1.x",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/datetimehideseconds.git",
+                "reference": "f2605ebae8fa6a69553e1a70458036df722402fd"
+            },
+            "require": {
+                "drupal/core": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.x-dev",
+                    "datestamp": "1540149481",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Project has not opted into security advisory coverage!"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "axel.rutz",
+                    "homepage": "https://www.drupal.org/user/229048"
+                }
+            ],
+            "description": "Provides the option to hide seconds in datetime fields.",
+            "homepage": "https://www.drupal.org/project/datetimehideseconds",
+            "support": {
+                "source": "https://git.drupalcode.org/project/datetimehideseconds"
+            },
+            "time": "2018-10-21 19:17:42"
         },
         {
             "name": "drupal/dbug",
@@ -6137,6 +6179,7 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "drupal/business_rules": 10,
+        "drupal/datetimehideseconds": 20,
         "drupal/front": 10,
         "drupal/rules": 15,
         "drupal/smtp": 10

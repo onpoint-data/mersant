@@ -28,6 +28,7 @@
         "drupal/address": "~1.0",
         "drupal/business_rules": "^1.0@beta",
         "drupal/core": "^8.7.6",
+        "drupal/datetimehideseconds": "1.x-dev",
         "drupal/entity_print": "^2.1",
         "drupal/front": "^1.0@beta",
         "drupal/prepopulate": "^2.2",
