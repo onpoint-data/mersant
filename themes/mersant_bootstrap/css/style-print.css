@@ -1,0 +1,83 @@
+/**
+ * If using a CSS pre-processor, tell it to overwrite this file. If not, place
+ * your custom CSS modifications here.
+ */
+
+.export .panel-heading, .flight-master-export .panel-heading  {
+   background-color: #fb9999; 
+}
+
+.import .panel-heading, .flight-master-import .panel-heading  {
+   background-color: #fff29c; 
+}
+
+.flight-master-special .panel-heading {
+   background-color: #afd2ff;
+}
+
+.form-item-field-van-routes-0-caption {
+   display: none;
+}
+
+/* ----------------------------------------------------
+	Typography
+------------------------------------------------------- */
+
+.field--label {
+  font-weight: 700;
+}
+
+/* ----------------------------------------------------
+	Display suite overrides
+------------------------------------------------------- */
+
+.field--name-field-horse-details-ref > .field--item {
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #ddd;
+}
+
+.field--name-field-horse-details-ref > .field--item:last-child {
+  margin-bottom: 0;
+  border-bottom: none;
+}
+
+/* ----------------------------------------------------
+	Display suite styles
+------------------------------------------------------- */
+
+.ds-4col > .group-first {
+  width: 25%;
+  float: left; /* LTR */
+}
+
+[dir="rtl"] .ds-4col > .group-first {
+  float: right;
+}
+
+.ds-4col > .group-second {
+  width: 25%;
+  float: left; /* LTR */
+}
+
+[dir="rtl"] .ds-4col > .group-second {
+  float: right;
+}
+
+.ds-4col > .group-third {
+  width: 25%;
+  float: left; /* LTR */
+}
+
+[dir="rtl"] .ds-4col > .group-third {
+  float: right;
+}
+
+.ds-4col > .group-fourth {
+  width: 25%;
+  float: left; /* LTR */
+}
+
+[dir="rtl"] .ds-4col > .group-fourth {
+  float: right;
+}

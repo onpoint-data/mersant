@@ -1,0 +1,69 @@
+{#
+/**
+ * @file
+ * Bootstrap Layouts: "2 Columns (stacked)" template.
+ *
+ * Available layout variables:
+ * - wrapper: Wrapper element for the layout container.
+ * - attributes: Wrapper attributes for the layout container.
+ *
+ * Available region variables:
+ * - top
+ * - top_left
+ * - top_right
+ * - middle
+ * - bottom_left
+ * - bottom_right
+ * - bottom
+ *
+ * Each region variable contains the following properties:
+ * - wrapper: The HTML element to use to wrap this region.
+ * - attributes: The HTML attributes to use on the wrapper for this region.
+ * - content: The content to go inside the wrapper for this region.
+ */
+#}
+
+
+<{{ wrapper }}{{ attributes }}>
+  {{ title_suffix.contextual_links }}
+
+  <{{ top.wrapper }}{{ top.attributes }}>
+    {{ top.content.entity_print_view_pdf }}
+  </{{ top.wrapper }}>
+
+  <{{ top_left.wrapper }}{{ top_left.attributes }}>
+    {{ top.content.group_administrative }}
+    {{ top.content.group_flight_info }}
+    {{ top.content.group_exporter_info }}
+  </{{ top_left.wrapper }}>
+
+  <{{ top_right.wrapper }}{{ top_right.attributes }}>
+    {{ top.content.group_consignee_info }}
+    {{ top.content.group_billing_info }}
+    {{ top.content.group_logistics }}
+  </{{ top_right.wrapper }}>
+
+  <{{ middle.wrapper }}{{ middle.attributes }}>
+    {{ top.content.group_horses }}
+  </{{ middle.wrapper }}>
+
+{#   {% if bottom_left.content %}
+  <{{ bottom_left.wrapper }}{{ bottom_left.attributes }}>
+    {{ bottom_left.content }}
+  </{{ bottom_left.wrapper }}>
+  {% endif %}
+
+  {% if bottom_right.content %}
+  <{{ bottom_right.wrapper }}{{ bottom_right.attributes }}>
+    {{ bottom_right.content }}
+  </{{ bottom_right.wrapper }}>
+  {% endif %}
+
+  {% if bottom.content %}
+  <{{ bottom.wrapper }}{{ bottom.attributes }}>
+    {{ bottom.content }}
+  </{{ bottom.wrapper }}>
+  {% endif %}
+#}
+
+</{{ wrapper }}>
