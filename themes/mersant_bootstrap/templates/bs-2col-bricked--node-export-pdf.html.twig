@@ -23,8 +23,6 @@
  */
 #}
 
-{{ entity_print_css }}
-
 <{{ wrapper }}{{ attributes }}>
   {{ title_suffix.contextual_links }}
 
@@ -34,13 +32,13 @@
   </{{ top.wrapper }}>
 #}
 
-  <div class="col-md-6 bs-region bs-region--top-left">
+  <div class="col-sm-6 bs-region bs-region--top-left">
     {{ top.content.group_administrative }}
     {{ top.content.group_flight_info }}
     {{ top.content.group_exporter_info }}
   </div>
 
-  <div class="col-md-6 bs-region bs-region--top-right">
+  <div class="col-sm-6 bs-region bs-region--top-right">
     {{ top.content.group_consignee_info }}
     {{ top.content.group_billing_info }}
     {{ top.content.group_logistics }}

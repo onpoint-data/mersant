@@ -23,25 +23,27 @@
  */
 #}
 
-
 <{{ wrapper }}{{ attributes }}>
 
   <{{ top.wrapper }}{{ top.attributes }}>
     {{ top.content.entity_print_view_pdf }}
   </{{ top.wrapper }}>
 
-  <{{ top_left.wrapper }}{{ top_left.attributes }}>
+  <{{ left.wrapper }}{{ left.attributes }}>
     {{ top.content.group_administrative }}
     {{ top.content.group_flight_info }}
-  </{{ top_left.wrapper }}>
+    {{ top.content.group_van_info }}
+  </{{ left.wrapper }}>
 
-  <{{ top_right.wrapper }}{{ top_right.attributes }}>
-    {{ top_right.content.group_logistics }}
-  </{{ top_right.wrapper }}>
+  <{{ right.wrapper }}{{ right.attributes }}>
+    {{ top.content.group_expenses }}
+    {{ top.content.group_to }}
+    {{ top.content.group_notes }}
+  </{{ right.wrapper }}>
 
-  <{{ middle.wrapper }}{{ middle.attributes }}>
-    {{ middle.content.group_horses }}
-  </{{ middle.wrapper }}>
+  <{{ bottom.wrapper }}{{ bottom.attributes }}>
+    {{ top.content.group_horses }}
+  </{{ bottom.wrapper }}>
 
 
 </{{ wrapper }}>

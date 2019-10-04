@@ -28,8 +28,16 @@
 }
 
 /* ----------------------------------------------------
-	Display suite overrides
+	Display suite styles
 ------------------------------------------------------- */
+
+.panel .field {
+  margin-bottom: 5px;
+}
+
+.panel.field .field-label {
+  font-size: .9em;
+}
 
 .field--name-field-horse-details-ref > .field--item {
   margin-bottom: 20px;
@@ -42,42 +50,33 @@
   border-bottom: none;
 }
 
+.field--name-field-horse-details-ref .field--name-node-title > .field--item p {
+  margin: 0;
+}
+
+.ds-4col > .group-first,
+.ds-4col > .group-second,
+.ds-4col > .group-third,
+.ds-4col > .group-fourth {
+  width: 24%;
+  display: inline-block;
+  float: none;
+  vertical-align: top;
+}
+
 /* ----------------------------------------------------
-	Display suite styles
+	Bootstrap overrides
 ------------------------------------------------------- */
 
-.ds-4col > .group-first {
-  width: 25%;
-  float: left; /* LTR */
+/*  Reduced to enforce two columns in print (due to lack of box-sizing in CSS2) */
+
+.col-sm-6,
+.col-md-6 {
+  width: 46%!important;
+  display: inline-block!important;
+  vertical-align: top;
 }
 
-[dir="rtl"] .ds-4col > .group-first {
-  float: right;
-}
-
-.ds-4col > .group-second {
-  width: 25%;
-  float: left; /* LTR */
-}
-
-[dir="rtl"] .ds-4col > .group-second {
-  float: right;
-}
-
-.ds-4col > .group-third {
-  width: 25%;
-  float: left; /* LTR */
-}
-
-[dir="rtl"] .ds-4col > .group-third {
-  float: right;
-}
-
-.ds-4col > .group-fourth {
-  width: 25%;
-  float: left; /* LTR */
-}
-
-[dir="rtl"] .ds-4col > .group-fourth {
-  float: right;
+.col-xs-12 {
+  width: 97%!important;
 }

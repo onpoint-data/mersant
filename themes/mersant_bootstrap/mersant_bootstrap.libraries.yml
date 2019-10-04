@@ -7,7 +7,9 @@ print-styling:
   css:
     theme:
       css/style-print.css: {}
-      'https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css': { type: external, minified: true }
+      css/bootstrap-panels.css: {}
+      css/bootstrap-grid-revised.css: {}
+      #'https://cdn.jsdelivr.net/npm/bootstrap-3-grid@0.0.1/bootstrap-3-grid.min.css': { type: external, minified: true }
       #css/bootstrap-grid.min.css: {}
 
 # Uncomment for LESS source JavaScript files.
