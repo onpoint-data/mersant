@@ -22,3 +22,7 @@ regions:
 libraries-extend:
   bootstrap/framework:
     - mersant_bootstrap/framework
+
+entity_print:
+  node:
+    all: 'mersant_bootstrap/print-styling'

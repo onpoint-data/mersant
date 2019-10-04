@@ -3,6 +3,13 @@ framework:
     theme:
       css/style.css: {}
 
+print-styling:
+  css:
+    theme:
+      css/style-print.css: {}
+      'https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css': { type: external, minified: true }
+      #css/bootstrap-grid.min.css: {}
+
 # Uncomment for LESS source JavaScript files.
 #  js:
 #    bootstrap/js/affix.js: {}
