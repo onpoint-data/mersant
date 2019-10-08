@@ -26,7 +26,9 @@
 
 <{{ wrapper }}{{ attributes }}>
   {{ title_suffix.contextual_links }}
-
+    {{ site_name }}
+  <img src="{{ logopath }}" />
+  <h3>{{ "now"|date("m/d/Y \\a\\t g:ia") }}</h3>
   <{{ top.wrapper }}{{ top.attributes }}>
     {{ top.content.entity_print_view_pdf }}
   </{{ top.wrapper }}>

@@ -3,18 +3,6 @@
  * your custom CSS modifications here.
  */
 
-.export .panel-heading, .flight-master-export .panel-heading  {
-   background-color: #fb9999; 
-}
-
-.import .panel-heading, .flight-master-import .panel-heading  {
-   background-color: #fff29c; 
-}
-
-.flight-master-special .panel-heading {
-   background-color: #afd2ff;
-}
-
 .form-item-field-van-routes-0-caption {
    display: none;
 }
@@ -28,20 +16,105 @@
 }
 
 /* ----------------------------------------------------
-	Display suite styles
+	Bootstrap overrides
 ------------------------------------------------------- */
 
-.panel .field {
-  margin-bottom: 5px;
+/*  Reduced to enforce two columns in print (due to lack of box-sizing in CSS2) */
+
+
+* {
+  font-size: .97em !important;
 }
 
-.panel.field .field-label {
+.col-sm-6,
+.col-md-6 {
+  width: 44%!important;
+  display: inline-block!important;
+  float: none!important;
+  vertical-align: top;
+  padding: 0 10px!important;
+}
+
+.col-xs-12 {
+  width: 92%!important;
+  padding: 0 10px!important;
+}
+
+.print .panel {
+  margin-bottom: 8px;
+}
+
+.print .panel-default > .panel-heading {
+  padding: 8px 12px;
+  background-color: #777;
   font-size: .9em;
 }
 
+.print .panel-body {
+  padding: 8px 12px;
+}
+
+.print .panel-title {
+  font-size: 1em;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.print .panel .field {
+  margin-bottom: 2px;
+  line-height: 1.2;
+}
+
+/* ----------------------------------------------------
+	Fields and labels
+------------------------------------------------------- */
+
+.field--label-inline .field--label,
+.field--label-inline .field--items,
+.field--label-inline .field--item {
+  display: inline;
+}
+
+.field--label-inline .field--label {
+  margin-right: 4px;
+}
+
+.field--label-inline .field--label:after {
+  content: ':';
+}
+
+.tablefield {
+  text-align: left;
+  font-size: .9em;
+}
+
+.tablefield th,
+.tablefield td {
+  padding-right: 16px;
+}
+
+.ds-4col > .group-first,
+.ds-4col > .group-second,
+.ds-4col > .group-third,
+.ds-4col > .group-fourth {
+  width: 23%;
+  display: inline-block;
+  float: none;
+  vertical-align: top;
+}
+
+.field--name-field-horse-details-ref {
+  font-size: .9em;
+}
+
+.print .panel .field--name-field-horse-details-ref .field {
+  margin-bottom: 0;
+}
+
 .field--name-field-horse-details-ref > .field--item {
-  margin-bottom: 20px;
-  padding-bottom: 20px;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
   border-bottom: 1px solid #ddd;
 }
 
@@ -54,29 +127,3 @@
   margin: 0;
 }
 
-.ds-4col > .group-first,
-.ds-4col > .group-second,
-.ds-4col > .group-third,
-.ds-4col > .group-fourth {
-  width: 24%;
-  display: inline-block;
-  float: none;
-  vertical-align: top;
-}
-
-/* ----------------------------------------------------
-	Bootstrap overrides
-------------------------------------------------------- */
-
-/*  Reduced to enforce two columns in print (due to lack of box-sizing in CSS2) */
-
-.col-sm-6,
-.col-md-6 {
-  width: 46%!important;
-  display: inline-block!important;
-  vertical-align: top;
-}
-
-.col-xs-12 {
-  width: 97%!important;
-}

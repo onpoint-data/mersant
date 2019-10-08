@@ -40,7 +40,7 @@
   <{{ top_right.wrapper }}{{ top_right.attributes }}>
     {{ top.content.group_consignee_info }}
     {{ top.content.group_billing_info }}
-    {{ top.content.group_logistics }}
+    {#{{ top.content.group_logistics }}#}
   </{{ top_right.wrapper }}>
 
   <{{ middle.wrapper }}{{ middle.attributes }}>

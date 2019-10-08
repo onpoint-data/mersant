@@ -23,31 +23,32 @@
  */
 #}
 
-<{{ wrapper }}{{ attributes }}>
+<{{ wrapper }} class="container print">
   {{ title_suffix.contextual_links }}
-
-{#
-  <{{ top.wrapper }}{{ top.attributes }}>
-    <h2>{{ top.content.group_administrative.field_export_id }}</h2>
-  </{{ top.wrapper }}>
-#}
-
-  <div class="col-sm-6 bs-region bs-region--top-left">
-    {{ top.content.group_administrative }}
-    {{ top.content.group_flight_info }}
-    {{ top.content.group_exporter_info }}
+  {{ site_name }}
+  <img src="{{ logopath }}" />
+  <h3>{{ "now"|date("m/d/Y \\a\\t g:ia") }}</h3>
+  
+  <div class="row">
+    <div class="col-sm-6 bs-region bs-region--top-left">
+      {{ top.content.group_administrative }}
+      {{ top.content.group_flight_info }}
+      {{ top.content.group_exporter_info }}
+      {{ top.content.group_consignee_info }}
+    </div>
+  
+    <div class="col-sm-6 bs-region bs-region--top-right">
+      {{ top.content.group_logistics }}
+      {{ top.content.group_billing_info }}
+    </div>
   </div>
-
-  <div class="col-sm-6 bs-region bs-region--top-right">
-    {{ top.content.group_consignee_info }}
-    {{ top.content.group_billing_info }}
-    {{ top.content.group_logistics }}
+  
+  <div class="row">
+    <div class="col-xs-12 bs-region bs-region--middle">
+      {{ top.content.group_horses }}
+    </div>
   </div>
-
-  <div class="col-xs-12 bs-region bs-region--middle">
-    {{ top.content.group_horses }}
-  </div>
-
+  
 {#   {% if bottom_left.content %}
   <{{ bottom_left.wrapper }}{{ bottom_left.attributes }}>
     {{ bottom_left.content }}
