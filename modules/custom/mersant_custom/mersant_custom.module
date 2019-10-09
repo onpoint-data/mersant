@@ -4,5 +4,19 @@
 #  $element['value']['#attributes']['step'] = 60;
 #  $element['end_value']['#attributes']['step'] = 60;
 #}
+function mersant_custom_inline_entity_form_reference_form_alter(&$reference_form, &$form_state) {
+    #ksm($reference_form);	
+    #ksm($form_state);
+    #   if ($form_id == `
+#	$reference_form['entity_id']['#description'] = t('New autocomplete description');
+}
 
-
+function mersant_custom_inline_entity_form_entity_form_alter(&$entity_form, &$form_state) {
+  # $maxlevels = '3';	
+  # ksm($entity_form);	
+   if ($entity_form['#bundle'] == 'owners') {
+     $maxlevels = '3';
+  #   ksm($entity_form);
+#    $entity_form['quantity']['#description'] = t('New quantity description.');
+  }
+}
