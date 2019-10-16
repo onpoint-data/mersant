@@ -45,8 +45,8 @@
 }
 
 .print .panel-default > .panel-heading {
-  padding: 8px 12px;
-  background-color: #777;
+  padding: 6px 10px;
+  background-color: #555;
   font-size: .9em;
 }
 
@@ -94,11 +94,22 @@
   padding-right: 16px;
 }
 
+/*
 .ds-4col > .group-first,
 .ds-4col > .group-second,
 .ds-4col > .group-third,
 .ds-4col > .group-fourth {
   width: 23%;
+  display: inline-block;
+  float: none;
+  vertical-align: top;
+}
+*/
+
+.node--type-horse > .col-md-3 {
+  width: 20%;
+  padding-left: 8px;
+  padding-right: 8px;
   display: inline-block;
   float: none;
   vertical-align: top;

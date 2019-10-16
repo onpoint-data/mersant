@@ -23,29 +23,29 @@
  */
 #}
 
-<{{ wrapper }}{{ attributes }}>
-  {{ title_suffix.contextual_links }}
+<{{ wrapper }} class="container print">
 
-  <{{ top.wrapper }}{{ top.attributes }}>
-    {{ top.content.entity_print_view_pdf }}
-  </{{ top.wrapper }}>
-
-  <{{ top_left.wrapper }}{{ top_left.attributes }}>
-    {{ top.content.group_administrative }}
-    {{ top.content.group_flight_info }}
-    {{ top.content.group_exporter_info }}
-    {{ top.content.group_consignee_info }}
-  </{{ top_left.wrapper }}>
-
-  <{{ top_right.wrapper }}{{ top_right.attributes }}>
-    {{ top.content.group_billing_info }}
-    {{ top.content.group_logistics }}
-  </{{ top_right.wrapper }}>
-
-  <{{ middle.wrapper }}{{ middle.attributes }}>
-    {{ top.content.group_horses }}
-  </{{ middle.wrapper }}>
-
+  <h3>Report Created: {{ "now"|date("m/d/Y \\a\\t g:ia", "America/New_York") }}</h3>
+  
+  <div class="row">
+    <div class="col-sm-6 bs-region bs-region--top-left">
+      {{ top.content.group_flight_info }}
+      {{ top.content.group_van_info }}
+    </div>
+  
+    <div class="col-sm-6 bs-region bs-region--top-right">
+      {{ top.content.group_administrative }}
+      {{ top.content.group_expenses }}
+      {{ top.content.group_to }}
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-xs-12 bs-region bs-region--middle">
+      {{ top.content.group_notes }}
+    </div>
+  </div>
+  
 {#   {% if bottom_left.content %}
   <{{ bottom_left.wrapper }}{{ bottom_left.attributes }}>
     {{ bottom_left.content }}
